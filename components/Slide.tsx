@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Image } from "@chakra-ui/image";
 import { Box, Code, Flex, Heading } from "@chakra-ui/layout";
 import { Text } from "@chakra-ui/layout";
@@ -21,6 +21,21 @@ export interface SlideProps {}
 
 export default function Slide(props: SlideProps) {
   const [currentIndex, setCurrentIndex] = useState(1);
+
+  useEffect(() => {
+    const handleNumber = (number: number, min: number, max: number): number => {
+      if (number > max) number = min;
+      return number;
+    };
+
+    const randomCurrent = setInterval(
+      () =>
+        setCurrentIndex((currentIndex) => handleNumber(currentIndex + 1, 1, 4)),
+      7000
+    );
+    console.log("ahihi");
+    return () => clearInterval(randomCurrent);
+  }, []);
   return (
     <Box position="relative" height={700}>
       <Header></Header>
