@@ -41,7 +41,7 @@ export default function Slide1(props: SlideProps) {
   //   return () => clearInterval(randomCurrent);
   // }, []);
   return (
-    <Swiper className="mySwiper">
+    <Swiper className="mySwiper" grabCursor={true}>
       <Header />
       {sliceData.map((item, index) => (
         <SwiperSlide key={index}>

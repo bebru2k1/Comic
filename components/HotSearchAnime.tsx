@@ -1,8 +1,14 @@
-import { Flex, Heading } from "@chakra-ui/layout";
+import { Flex, Heading, Box } from "@chakra-ui/layout";
 import * as React from "react";
 import SingleAnime from "./SingleAnime";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import SwiperCore, { FreeMode } from "swiper";
+import { Button } from "@chakra-ui/react";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 export interface HotSearchAnimeProps {}
+SwiperCore.use([FreeMode]);
 
 export default function HotSearchAnime(props: HotSearchAnimeProps) {
   const fakeImage = [
@@ -15,35 +21,37 @@ export default function HotSearchAnime(props: HotSearchAnimeProps) {
     "/imgs/narutoavt.jpg",
     "/imgs/jujutsuavt.png",
     "/imgs/onepieceavt.jpg",
+    "/imgs/onepieceavt.jpg",
+    "/imgs/onepieceavt.jpg",
+    "/imgs/onepieceavt.jpg",
   ];
   return (
     <>
       <Heading ml={5} mt={10} color="teal">
         PHIM HOT TRONG TUẦN
       </Heading>
-      <Flex
-        flexWrap="nowrap"
-        overflowX="auto"
-        overflowY="hidden"
-        flexFlow="row nowrap"
-        sx={{
-          "&::-webkit-scrollbar": {
-            height: "12px",
-          },
-          "&::-webkit-scrollbar-track": {
-            background: "rgb(138, 138, 138)",
-            borderRadius: "2px",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "rgb(58, 58, 58)",
-            borderRadius: "2px",
-          },
-        }}
-      >
+      <Swiper spaceBetween={10} freeMode={true} slidesPerView={"auto"}>
         {fakeImage.map((item, index) => (
-          <SingleAnime key={index} dataAnime={item} />
+          <SwiperSlide
+            key={index}
+            style={{
+              width: "200px",
+            }}
+          >
+            <SingleAnime dataAnime={item} />
+          </SwiperSlide>
         ))}
-      </Flex>
+      </Swiper>
+      <Button
+        variant="link"
+        colorScheme="red"
+        rightIcon={<ArrowForwardIcon />}
+        marginRight="auto"
+        float="right"
+        mr={2}
+      >
+        Xem Thêm
+      </Button>
     </>
   );
 }
