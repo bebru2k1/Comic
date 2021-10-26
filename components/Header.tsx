@@ -9,7 +9,14 @@ export interface HeaderProps {}
 export default function Header(props: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <Flex align="center" justify="space-between" padding={5}>
+    <Flex
+      align="center"
+      justify="space-between"
+      padding={5}
+      position="absolute"
+      top={0}
+      zIndex={1000}
+    >
       {/* HeaderLeft */}
       <Flex align="center">
         {/* HeaderLeft-Left */}
