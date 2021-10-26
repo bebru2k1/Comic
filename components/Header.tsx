@@ -30,10 +30,10 @@ export default function Header(props: HeaderProps) {
         {/* HeaderLeft-Right */}
         <Box>
           <Button color="white" variant="link" ml={5}>
-            Tin tức truyện
+            Tin tức Anime
           </Button>
           <Button color="white" variant="link" ml={5}>
-            Thể loại truyện
+            Thể loại Anime
           </Button>
         </Box>
       </Flex>

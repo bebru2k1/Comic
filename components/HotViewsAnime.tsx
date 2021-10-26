@@ -2,9 +2,9 @@ import { Flex, Heading } from "@chakra-ui/layout";
 import * as React from "react";
 import SingleAnime from "./SingleAnime";
 
-export interface HotSearchAnimeProps {}
+export interface HotViewsAnimeProps {}
 
-export default function HotSearchAnime(props: HotSearchAnimeProps) {
+export default function HotViewsAnime(props: HotViewsAnimeProps) {
   const fakeImage = [
     "/imgs/onepieceavt.jpg",
     "/imgs/demonslayeravt.png",
@@ -15,11 +15,12 @@ export default function HotSearchAnime(props: HotSearchAnimeProps) {
     "/imgs/narutoavt.jpg",
     "/imgs/jujutsuavt.png",
     "/imgs/onepieceavt.jpg",
+    "/imgs/onepieceavt.jpg",
   ];
   return (
     <>
       <Heading ml={5} mt={10} color="teal">
-        PHIM HOT TRONG TUẦN
+        PHIM NHIỀU NGƯỜI XEM
       </Heading>
       <Flex
         flexWrap="nowrap"

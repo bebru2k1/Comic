@@ -19,7 +19,7 @@ export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
       initial="hidden"
       animate="visible"
       mt={10}
-      mb={10}
+      mb={2}
       ml={5}
       position="relative"
       width={200}
