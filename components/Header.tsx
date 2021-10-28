@@ -39,9 +39,11 @@ export default function Header(props: HeaderProps) {
           <Button color="white" variant="link" ml={5}>
             Tin tức Anime
           </Button>
-          <Button color="white" variant="link" ml={5}>
-            Thể loại Anime
-          </Button>
+          <Link href="/anime" passHref>
+            <Button as="a" color="white" variant="link" ml={5}>
+              Thể loại Anime
+            </Button>
+          </Link>
         </Box>
       </Flex>
       {/* HeaderRight */}

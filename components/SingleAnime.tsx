@@ -3,14 +3,17 @@ import { Box, chakra, Button, Heading, Text, Code } from "@chakra-ui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { variantsAvatar } from "../animations/animations";
-export interface SingleAnimeProps {
-  dataAnime: any;
-}
+import { IAnime } from "../IData/IAnime";
+
 const MotionBox = motion(Box);
 const ImageNext = chakra(Image, {
   baseStyle: { maxH: 120, maxW: 120 },
   shouldForwardProp: (prop) => ["src", "alt", "layout"].includes(prop),
 });
+
+export interface SingleAnimeProps {
+  dataAnime: IAnime;
+}
 
 export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
   return (
@@ -31,18 +34,20 @@ export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
       flexShrink={0}
     >
       <ImageNext
-        src={dataAnime}
+        src={dataAnime.cover_image}
         alt=""
         layout="fill"
         borderRadius={5}
         boxShadow="rgba(99, 99, 99, 0.4) 0px 4px 10px 0px"
         objectFit="cover"
       />
+
       <Box position="absolute" right={2} top={2}>
         <Button size="sm" colorScheme="red" _hover={{ colorScheme: "red" }}>
           900/1000
         </Button>
       </Box>
+
       <Box
         position="absolute"
         w="100%"
@@ -54,9 +59,9 @@ export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
         padding={3}
         borderBottomLeftRadius={5}
         borderBottomRightRadius={5}
-        // style={{color : rgb(255, 109, 109)}}
+        // style={{color : rgb(216, 75, 75)}}
       >
-        Onepiece (Vua Hải Tặc)
+        {dataAnime.titles.en}
       </Box>
     </MotionBox>
   );

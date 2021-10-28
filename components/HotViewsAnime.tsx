@@ -5,31 +5,20 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { FreeMode } from "swiper";
 import { Button } from "@chakra-ui/react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-
-export interface HotViewsAnimeProps {}
+import { IAnime } from "../IData/IAnime";
 
 SwiperCore.use([FreeMode]);
-
-export default function HotViewsAnime(props: HotViewsAnimeProps) {
-  const fakeImage = [
-    "/imgs/onepieceavt.jpg",
-    "/imgs/demonslayeravt.png",
-    "/imgs/narutoavt.jpg",
-    "/imgs/jujutsuavt.png",
-    "/imgs/onepieceavt.jpg",
-    "/imgs/demonslayeravt.png",
-    "/imgs/narutoavt.jpg",
-    "/imgs/jujutsuavt.png",
-    "/imgs/onepieceavt.jpg",
-    "/imgs/onepieceavt.jpg",
-  ];
+export interface HotViewsAnimeProps {
+  dataAnime: IAnime[];
+}
+export default function HotViewsAnime({ dataAnime }: HotViewsAnimeProps) {
   return (
     <>
       <Heading ml={5} mt={10} color="teal">
         PHIM NHIỀU NGƯỜI XEM
       </Heading>
       <Swiper spaceBetween={10} freeMode={true} slidesPerView={"auto"}>
-        {fakeImage.map((item, index) => (
+        {dataAnime.map((item, index) => (
           <SwiperSlide
             key={index}
             style={{

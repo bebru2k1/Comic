@@ -1,39 +1,27 @@
 import { Flex, Heading, Box } from "@chakra-ui/layout";
 import * as React from "react";
-import SingleAnime from "./SingleAnime";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import SwiperCore, { FreeMode } from "swiper";
 import { Button } from "@chakra-ui/react";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
-
-export interface HotSearchAnimeProps {}
+import { IAnime } from "../IData/IAnime";
+import SingleAnime from "./SingleAnime";
+import Test from "./Test";
+export interface HotSearchAnimeProps {
+  dataAnime: IAnime[];
+}
 SwiperCore.use([FreeMode]);
 
-export default function HotSearchAnime(props: HotSearchAnimeProps) {
-  const fakeImage = [
-    "/imgs/onepieceavt.jpg",
-    "/imgs/demonslayeravt.png",
-    "/imgs/narutoavt.jpg",
-    "/imgs/jujutsuavt.png",
-    "/imgs/onepieceavt.jpg",
-    "/imgs/demonslayeravt.png",
-    "/imgs/narutoavt.jpg",
-    "/imgs/jujutsuavt.png",
-    "/imgs/onepieceavt.jpg",
-    "/imgs/onepieceavt.jpg",
-    "/imgs/onepieceavt.jpg",
-    "/imgs/onepieceavt.jpg",
-  ];
+export default function HotSearchAnime({ dataAnime }: HotSearchAnimeProps) {
   return (
     <>
       <Heading ml={5} mt={10} color="teal">
         PHIM HOT TRONG TUẦN
       </Heading>
       <Swiper spaceBetween={10} freeMode={true} slidesPerView={"auto"}>
-        {fakeImage.map((item, index) => (
+        {dataAnime.map((item) => (
           <SwiperSlide
-            key={index}
+            key={item.id}
             style={{
               width: "200px",
             }}
