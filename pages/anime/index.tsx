@@ -19,14 +19,12 @@ export default function Anime({ animeData }: AnimeProps) {
   console.log(route);
 
   useEffect(() => {
-    if (route.query.page === "string") {
-      setCurrentPage(+route.query.page);
-    }
-  }, [route.query]);
 
-  useEffect(() => {
-    route.push(`?page=${currentPage}`);
-  }, [currentPage]);
+    if (route.query.page === "string") {
+      setCurrentPage(+route.query.page );
+    }
+  }, [route.query.page]);
+
 
   return (
     <div>

@@ -1,6 +1,6 @@
 import { Box, Button } from "@chakra-ui/react";
-import * as React from "react";
-
+import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 export interface PaginationProps {
   totalPage: number;
   currentPage: number;
@@ -17,6 +17,8 @@ export default function Pagination({
     if (number > max) number = max;
     return number;
   };
+  const route = useRouter();
+
   return (
     <Box d="flex" mb={10} mt={10}>
       <Box
@@ -27,7 +29,9 @@ export default function Pagination({
         borderRadius={3}
         bg="gray.700"
         onClick={() =>
-          setCurrentPage(handleNumber(currentPage - 1, 1, totalPage))
+          route.push(
+            `/anime?page=${handleNumber(currentPage - 1, 1, totalPage)}`
+          )
         }
         {...(currentPage === 1 && "_disabled")}
         isActive={false}
@@ -46,7 +50,9 @@ export default function Pagination({
           borderRadius={3}
           bg="gray.700"
           onClick={() =>
-            setCurrentPage(handleNumber(currentPage - 1, 1, totalPage))
+            route.push(
+              `/anime?page=${handleNumber(currentPage - 1, 1, totalPage)}`
+            )
           }
         >
           {currentPage - 1}
@@ -59,7 +65,9 @@ export default function Pagination({
         px={4}
         borderRadius={3}
         bg="gray.500"
-        onClick={() => setCurrentPage(handleNumber(currentPage, 1, totalPage))}
+        onClick={() =>
+          route.push(`/anime?page=${handleNumber(currentPage, 1, totalPage)}`)
+        }
       >
         {currentPage}
       </Box>
@@ -71,7 +79,9 @@ export default function Pagination({
         borderRadius={3}
         bg="gray.700"
         onClick={() =>
-          setCurrentPage(handleNumber(currentPage + 1, 1, totalPage))
+          route.push(
+            `/anime?page=${handleNumber(currentPage + 1, 1, totalPage)}`
+          )
         }
       >
         {currentPage + 1}{" "}
@@ -83,7 +93,11 @@ export default function Pagination({
         px={4}
         borderRadius={3}
         bg="gray.700"
-        onClick={() => setCurrentPage(currentPage + 1)}
+        onClick={() =>
+          route.push(
+            `/anime?page=${handleNumber(currentPage + 1, 1, totalPage)}`
+          )
+        }
       >
         Next
       </Box>
