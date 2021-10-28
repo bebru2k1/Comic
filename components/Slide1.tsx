@@ -42,7 +42,7 @@ export default function Slide1(props: SlideProps) {
   // }, []);
   return (
     <Swiper className="mySwiper" grabCursor={true}>
-      <Header />
+      <Header position="absolute" />
       {sliceData.map((item, index) => (
         <SwiperSlide key={index}>
           {({ isActive }) => (

@@ -1,19 +1,27 @@
 import * as React from "react";
 import { Image } from "@chakra-ui/image";
 import { Box, Flex } from "@chakra-ui/layout";
-import { Button, Link as ChakraLink, useColorMode } from "@chakra-ui/react";
+import {
+  Button,
+  Link as ChakraLink,
+  ResponsiveValue,
+  useColorMode,
+} from "@chakra-ui/react";
+
 import Link from "next/link";
 
-export interface HeaderProps {}
+export interface HeaderProps {
+  position?: string;
+}
 
-export default function Header(props: HeaderProps) {
+export default function Header({ position }: HeaderProps) {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Flex
       align="center"
       justify="space-between"
       padding={5}
-      position="absolute"
+      position={position as ResponsiveValue<any>}
       top={0}
       zIndex={1000}
     >

@@ -17,14 +17,17 @@ export default function Anime({ animeData }: AnimeProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const route = useRouter();
   console.log(route);
+
   useEffect(() => {
     if (route.query.page === "string") {
       setCurrentPage(+route.query.page);
     }
   }, [route.query]);
+
   useEffect(() => {
     route.push(`?page=${currentPage}`);
   }, [currentPage]);
+
   return (
     <div>
       <Head>
@@ -39,11 +42,13 @@ export default function Anime({ animeData }: AnimeProps) {
             </Box>
           ))}
         </Box>
-        <Pagination
-          setCurrentPage={setCurrentPage}
-          totalPage={100}
-          currentPage={currentPage}
-        ></Pagination>
+        <Box display="flex" alignItems="center" justifyContent="center">
+          <Pagination
+            setCurrentPage={setCurrentPage}
+            totalPage={100}
+            currentPage={currentPage}
+          ></Pagination>
+        </Box>
       </Box>
     </div>
   );

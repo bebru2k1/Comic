@@ -18,8 +18,14 @@ export default function Pagination({
     return number;
   };
   return (
-    <Box m="0 auto" mt={20}>
-      <Button
+    <Box d="flex" mb={10} mt={10}>
+      <Box
+        cursor="pointer"
+        ml={2}
+        py={2}
+        px={4}
+        borderRadius={3}
+        bg="gray.700"
         onClick={() =>
           setCurrentPage(handleNumber(currentPage - 1, 1, totalPage))
         }
@@ -28,29 +34,59 @@ export default function Pagination({
         outline="none"
       >
         Prev
-      </Button>
+      </Box>
       {currentPage !== 1 && (
-        <Button
+        <Box
+          cursor="pointer"
+          ml={2}
+          py={2}
+          px={4}
+          width={10}
+          height={10}
+          borderRadius={3}
+          bg="gray.700"
           onClick={() =>
             setCurrentPage(handleNumber(currentPage - 1, 1, totalPage))
           }
         >
           {currentPage - 1}
-        </Button>
+        </Box>
       )}
-      <Button
+      <Box
+        cursor="pointer"
+        ml={2}
+        py={2}
+        px={4}
+        borderRadius={3}
+        bg="gray.500"
         onClick={() => setCurrentPage(handleNumber(currentPage, 1, totalPage))}
       >
         {currentPage}
-      </Button>
-      <Button
+      </Box>
+      <Box
+        cursor="pointer"
+        ml={2}
+        py={2}
+        px={4}
+        borderRadius={3}
+        bg="gray.700"
         onClick={() =>
           setCurrentPage(handleNumber(currentPage + 1, 1, totalPage))
         }
       >
         {currentPage + 1}{" "}
-      </Button>
-      <Button onClick={() => setCurrentPage(currentPage + 1)}>Next</Button>
+      </Box>
+      <Box
+        cursor="pointer"
+        ml={2}
+        py={2}
+        px={4}
+        borderRadius={3}
+        bg="gray.700"
+        onClick={() => setCurrentPage(currentPage + 1)}
+      >
+        Next
+      </Box>
     </Box>
   );
 }
