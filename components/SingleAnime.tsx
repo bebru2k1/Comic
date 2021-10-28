@@ -1,5 +1,13 @@
 import * as React from "react";
-import { Box, chakra, Button, Heading, Text, Code } from "@chakra-ui/react";
+import {
+  Box,
+  chakra,
+  Button,
+  Heading,
+  Text,
+  Code,
+  Badge,
+} from "@chakra-ui/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { variantsAvatar } from "../animations/animations";
@@ -13,6 +21,8 @@ const ImageNext = chakra(Image, {
 
 export interface SingleAnimeProps {
   dataAnime: IAnime;
+  width?: string | number;
+  height?: string | number;
 }
 
 export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
@@ -21,11 +31,9 @@ export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
       variants={variantsAvatar}
       initial="hidden"
       animate="visible"
-      mt={10}
-      mb={2}
       position="relative"
-      width={200}
-      height={300}
+      width="100%"
+      height="100%"
       cursor="pointer"
       whileHover={{
         scale: 1.05,
@@ -44,7 +52,7 @@ export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
 
       <Box position="absolute" right={2} top={2}>
         <Button size="sm" colorScheme="red" _hover={{ colorScheme: "red" }}>
-          900/1000
+          {`${dataAnime.score}/??`}
         </Button>
       </Box>
 
@@ -59,7 +67,12 @@ export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
         padding={3}
         borderBottomLeftRadius={5}
         borderBottomRightRadius={5}
+        d="inline-block"
+        overflow="hidden"
+        whiteSpace="nowrap"
+        textOverflow="ellipsis"
         // style={{color : rgb(216, 75, 75)}}
+        width="100%"
       >
         {dataAnime.titles.en}
       </Box>

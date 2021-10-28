@@ -19,7 +19,9 @@ export default function Anime({ animeData }: AnimeProps) {
       {/* <Header></Header> */}
       <Box d="flex" maxW="1200px" m="0 auto" flexWrap="wrap">
         {animeData.data.documents.map((data) => (
-          <SingleAnime key={data.id} dataAnime={data} />
+          <Box padding={2} w="16.6666666667%" height={300} key={data.id}>
+            <SingleAnime dataAnime={data} />
+          </Box>
         ))}
       </Box>
     </div>

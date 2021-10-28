@@ -18,18 +18,22 @@ export default function HotSearchAnime({ dataAnime }: HotSearchAnimeProps) {
       <Heading ml={5} mt={10} color="teal">
         PHIM HOT TRONG TUẦN
       </Heading>
-      <Swiper spaceBetween={10} freeMode={true} slidesPerView={"auto"}>
-        {dataAnime.map((item) => (
-          <SwiperSlide
-            key={item.id}
-            style={{
-              width: "200px",
-            }}
-          >
-            <SingleAnime dataAnime={item} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      <Box mt={5}>
+        <Swiper spaceBetween={10} freeMode={true} slidesPerView={"auto"}>
+          {dataAnime.map((item) => (
+            <SwiperSlide
+              key={item.id}
+              style={{
+                width: "200px",
+              }}
+            >
+              <Box w={200} height={300}>
+                <SingleAnime dataAnime={item} />
+              </Box>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </Box>
       <Button
         variant="link"
         colorScheme="red"
