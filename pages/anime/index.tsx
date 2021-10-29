@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/layout";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState, useRef } from "react";
 import Header from "../../components/Header";
 import SingleAnime from "../../components/SingleAnime";
 import { url } from "../../contans";
@@ -14,17 +14,21 @@ export interface AnimeProps {
 }
 
 export default function Anime({ animeData }: AnimeProps) {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [reRender, setRerender] = useState({});
   const route = useRouter();
-  console.log(route);
+  let queryPage = useRef<number>(1);
 
   useEffect(() => {
+    if (!route.query.page) {
+      route.push("/anime?page=1");
+      queryPage.current = 1;
+    }
 
-    if (route.query.page === "string") {
-      setCurrentPage(+route.query.page );
+    if (typeof route.query.page === "string") {
+      queryPage.current = +route.query.page;
+      setRerender({});
     }
   }, [route.query.page]);
-
 
   return (
     <div>
@@ -42,9 +46,8 @@ export default function Anime({ animeData }: AnimeProps) {
         </Box>
         <Box display="flex" alignItems="center" justifyContent="center">
           <Pagination
-            setCurrentPage={setCurrentPage}
             totalPage={100}
-            currentPage={currentPage}
+            currentPage={queryPage.current || 1}
           ></Pagination>
         </Box>
       </Box>

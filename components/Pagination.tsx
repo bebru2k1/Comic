@@ -4,13 +4,11 @@ import { useRouter } from "next/router";
 export interface PaginationProps {
   totalPage: number;
   currentPage: number;
-  setCurrentPage: (value: number) => void;
 }
 
 export default function Pagination({
   totalPage,
   currentPage,
-  setCurrentPage,
 }: PaginationProps) {
   const handleNumber = (number: number, min: number, max: number) => {
     if (number < min) number = min;
@@ -18,7 +16,7 @@ export default function Pagination({
     return number;
   };
   const route = useRouter();
-
+  console.log(currentPage);
   return (
     <Box d="flex" mb={10} mt={10}>
       <Box
