@@ -16,7 +16,7 @@ export default function Pagination({
     return number;
   };
   const route = useRouter();
-  console.log(currentPage);
+
   return (
     <Box d="flex" mb={10} mt={10}>
       <Box

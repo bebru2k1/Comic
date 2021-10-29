@@ -61,7 +61,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     response = await axios.get<IAnimeResponseList>(`${url}/anime`);
   } else {
     response = await axios.get<IAnimeResponseList>(
-      `${url}/anime?page=${query.page}`
+      `${url}/anime?page=${query.page}&per_page=20`
     );
   }
 

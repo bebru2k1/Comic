@@ -6,14 +6,16 @@ import Header from "./Header";
 // import Image from "next/image";
 import { motion } from "framer-motion";
 import { sliceData } from "../data/sliceData";
+import Modal from "./Modal";
 import {
   variantsAvatar,
   variantsDescription,
   variantsBg,
 } from "../animations/animations";
-import { Button } from "@chakra-ui/react";
+import { Button, useDisclosure } from "@chakra-ui/react";
 import SlideButton from "./SlideButton";
 import { IAnime } from "../IData/IAnime";
+import PlayerVideo from "./PlayerVideo";
 
 const MotionBox = motion(Box);
 const MotionImage = motion(Image);
@@ -24,6 +26,7 @@ export interface SlideProps {
 
 export default function Slide({ dataAnime }: SlideProps) {
   console.log(dataAnime);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box position="relative" height={700}>
       <Header></Header>
@@ -52,11 +55,14 @@ export default function Slide({ dataAnime }: SlideProps) {
           animate="visible"
         />
         <Flex align="center" justify="space-evenly">
-          <MotionBox
+          <Box
             width="30%"
             variants={variantsAvatar}
             initial="hidden"
             animate="visible"
+            d="flex"
+            flexDirection="column"
+            alignItems="center"
           >
             <Image
               src={dataAnime.cover_image}
@@ -68,7 +74,30 @@ export default function Slide({ dataAnime }: SlideProps) {
               m="0 auto"
               boxShadow="rgba(99, 99, 99, 0.4) 0px 4px 10px 0px"
             ></Image>
-          </MotionBox>
+            <Box mt={5}>
+              <Button size="sm" colorScheme="red">
+                Watch
+              </Button>
+              <Button ml={2} size="sm" colorScheme="yellow" onClick={onOpen}>
+                View Trailer
+                <Modal
+                  title="View Trailer"
+                  videoSrc={{
+                    type: "video",
+                    sources: [
+                      {
+                        src: dataAnime.trailer_url,
+                        provider: "youtube",
+                      },
+                    ],
+                  }}
+                  isOpen={isOpen}
+                  onOpen={onOpen}
+                  onClose={onClose}
+                ></Modal>
+              </Button>
+            </Box>
+          </Box>
 
           <MotionBox
             width="70%"
@@ -85,10 +114,14 @@ export default function Slide({ dataAnime }: SlideProps) {
             <Box>
               <Text color="white" fontWeight="bold" mt={2}>
                 {" "}
-                Thể loại :
+                Genres
+                <br />{" "}
               </Text>
-              <Code colorScheme="red">Hành động</Code>,{" "}
-              <Code colorScheme="red">Kinh Dị</Code>
+              {dataAnime.genres.slice(0, 11).map((item, index) => (
+                <Code ml={2} key={index} colorScheme="red">
+                  {item}
+                </Code>
+              ))}
             </Box>
           </MotionBox>
         </Flex>
