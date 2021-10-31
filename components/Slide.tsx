@@ -111,6 +111,9 @@ export default function Slide({ dataAnime }: SlideProps) {
             <Text color="white" mt={5}>
               {dataAnime.descriptions.en}
             </Text>
+            <Text color="white" mt={5}>
+              Source : {dataAnime.score}
+            </Text>
             <Box>
               <Text color="white" fontWeight="bold" mt={2}>
                 {" "}

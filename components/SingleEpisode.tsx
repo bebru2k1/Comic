@@ -1,26 +1,31 @@
 import * as React from "react";
-import { Box, chakra, Button, Link as ChakraLink } from "@chakra-ui/react";
+import { Box, chakra, Link as ChakraLink } from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { variantsAvatar } from "../animations/animations";
 import { IAnime } from "../IData/IAnime";
-
+import { motion } from "framer-motion";
+import { IEpisodeList } from "../IData/IEpisode";
+import { variantsAvatar } from "../animations/animations";
+import { IEpisode } from "../IData/IEpisode";
+export interface SingleEpisodeProps {
+  dataEpisode: IEpisode;
+  dataAnime: IAnime;
+}
 const MotionBox = motion(Box);
 const ImageNext = chakra(Image, {
   baseStyle: { maxH: 120, maxW: 120 },
   shouldForwardProp: (prop) => ["src", "alt", "layout"].includes(prop),
 });
 
-export interface SingleAnimeProps {
-  dataAnime: IAnime;
-  width?: string | number;
-  height?: string | number;
-}
+export default function SingleEpisode({
+  dataEpisode,
+  dataAnime,
+}: SingleEpisodeProps) {
+  console.log("dataEpisode", dataEpisode);
+  console.log("dataAnime", dataAnime);
 
-export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
   return (
-    <Link href={`/anime/${dataAnime.id}`} passHref>
+    <Link href={`/anime`} passHref>
       <ChakraLink>
         <MotionBox
           variants={variantsAvatar}
@@ -37,19 +42,13 @@ export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
           flexShrink={0}
         >
           <ImageNext
-            src={dataAnime.cover_image}
+            src={dataAnime!.banner_image as string}
             alt=""
             layout="fill"
             borderRadius={5}
             boxShadow="rgba(99, 99, 99, 0.4) 0px 4px 10px 0px"
             objectFit="cover"
           />
-
-          <Box position="absolute" right={2} top={2}>
-            <Button size="sm" colorScheme="red" _hover={{ colorScheme: "red" }}>
-              {`${dataAnime.episodes_count}/??`}
-            </Button>
-          </Box>
 
           <Box
             position="absolute"
@@ -68,7 +67,7 @@ export default function SingleAnime({ dataAnime }: SingleAnimeProps) {
             textOverflow="ellipsis"
             width="100%"
           >
-            {dataAnime.titles.en}
+            {`Ep ${dataEpisode.number} : ${dataEpisode.title}`}
           </Box>
         </MotionBox>
       </ChakraLink>
