@@ -21,11 +21,8 @@ export default function SingleEpisode({
   dataEpisode,
   dataAnime,
 }: SingleEpisodeProps) {
-  console.log("dataEpisode", dataEpisode);
-  console.log("dataAnime", dataAnime);
-
   return (
-    <Link href={`/anime`} passHref>
+    <Link href={`/anime/${dataAnime.id}/${dataEpisode.number}`} passHref>
       <ChakraLink>
         <MotionBox
           variants={variantsAvatar}
@@ -42,7 +39,7 @@ export default function SingleEpisode({
           flexShrink={0}
         >
           <ImageNext
-            src={dataAnime!.banner_image as string}
+            src={dataAnime?.banner_image as string}
             alt=""
             layout="fill"
             borderRadius={5}

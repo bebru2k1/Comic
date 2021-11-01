@@ -52,7 +52,7 @@ export default function Episode({
               <Swiper freeMode={true} slidesPerView={"auto"}>
                 {dataEpisode?.documents
                   .reverse()
-                  .slice(0, 5)
+                  .slice(0, 10)
                   .map((data, index) => (
                     <SwiperSlide
                       key={index}
@@ -68,6 +68,29 @@ export default function Episode({
                       </Box>
                     </SwiperSlide>
                   ))}
+                <SwiperSlide
+                  style={{
+                    width: "250px",
+                  }}
+                >
+                  <Box padding={2} w="250px" height={150} borderRadius={5}>
+                    <Box
+                      p={2}
+                      bg="gray.700"
+                      w="100%"
+                      h="100%"
+                      borderRadius={5}
+                      d="flex"
+                      alignItems="center"
+                      justifyContent="center"
+                      fontSize={20}
+                      fontWeight="bold"
+                      cursor="pointer"
+                    >
+                      More ...
+                    </Box>
+                  </Box>
+                </SwiperSlide>
               </Swiper>
             </Box>
           )}

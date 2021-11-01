@@ -30,6 +30,11 @@ export interface IAnimeResponse {
   message: string;
   data: IAnime[];
 }
+export interface IAnimeResponseSingle {
+  status_code: number;
+  message: string;
+  data: IAnime;
+}
 
 export interface IAnimeResponseList {
   status_code: number;

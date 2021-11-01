@@ -32,7 +32,7 @@ export default function Modal({
 }: ModalProps) {
   return (
     <>
-      <ModalChakara isOpen={isOpen} onClose={onClose}>
+      <ModalChakara isOpen={isOpen} onClose={onClose} size="xl">
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>{title}</ModalHeader>

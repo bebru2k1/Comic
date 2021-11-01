@@ -44,23 +44,23 @@ export default function Header({ position }: HeaderProps) {
         </Box>
         {/* HeaderLeft-Right */}
         <Box>
-          <Button color="white" variant="link" ml={5}>
+          {/* <Button color="white" variant="link" ml={5}>
             Tin tức Anime
-          </Button>
+          </Button> */}
           <Link href="/anime" passHref>
             <Button as="a" color="white" variant="link" ml={5}>
-              Thể loại Anime
+              List Anime
             </Button>
           </Link>
         </Box>
       </Flex>
       {/* HeaderRight */}
-      <Box>
+      {/* <Box>
         <Button color="white" variant="link" ml={5}>
           Đăng nhập/ Đăng kí
         </Button>
-        {/* <Box onClick={() => toggleColorMode()}>Set ColorMode</Box> */}
-      </Box>
+         <Box onClick={() => toggleColorMode()}>Set ColorMode</Box>
+      </Box> */}
     </Flex>
   );
 }

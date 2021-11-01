@@ -26,7 +26,7 @@ export default function DetailAnime({ dataAnime }: DetailAnimeProps) {
 
   const [dataEpisode, setDataEpisode] = useState<IEpisodeList | null>(null);
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const fetchDataEpisode = async () => {
     const response = await axios.get<IEpisodeResponse>(
       `${url}/episode?anime_id=11&source=dreamsub&locale=it&page=2&per_page=20`
@@ -38,9 +38,9 @@ export default function DetailAnime({ dataAnime }: DetailAnimeProps) {
     }
   };
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     fetchDataEpisode();
-    setIsLoading(false)
+    setIsLoading(false);
   }, []);
 
   if (route.isFallback) return <Spinner />;
@@ -54,7 +54,7 @@ export default function DetailAnime({ dataAnime }: DetailAnimeProps) {
       <Episode
         dataAnime={dataAnime}
         dataEpisode={dataEpisode!}
-        isLoading = {isLoading}
+        isLoading={isLoading}
       />
     </>
   );
@@ -65,7 +65,7 @@ export const getStaticPaths: GetStaticPaths = async ({}) => {
   const paths = response.data.data.documents.map((data) => ({
     params: { id: data.id.toString() },
   }));
-
+  console.log(response.data.data);
   return {
     paths,
     fallback: true,
