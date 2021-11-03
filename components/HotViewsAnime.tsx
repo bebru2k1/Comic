@@ -15,7 +15,7 @@ export default function HotViewsAnime({ dataAnime }: HotViewsAnimeProps) {
   return (
     <>
       <Heading ml={5} mt={10} color="teal">
-        PHIM NHIỀU NGƯỜI XEM
+        ANIME HOT VIEWS
       </Heading>
       <Box mt={5}>
         <Swiper spaceBetween={10} freeMode={true} slidesPerView={"auto"}>
@@ -33,7 +33,7 @@ export default function HotViewsAnime({ dataAnime }: HotViewsAnimeProps) {
           ))}
         </Swiper>
       </Box>
-      <Button
+      {/* <Button
         variant="link"
         colorScheme="red"
         rightIcon={<ArrowForwardIcon />}
@@ -42,7 +42,7 @@ export default function HotViewsAnime({ dataAnime }: HotViewsAnimeProps) {
         mr={2}
       >
         Xem Thêm
-      </Button>
+      </Button> */}
       <Box mb={10}></Box>
     </>
   );

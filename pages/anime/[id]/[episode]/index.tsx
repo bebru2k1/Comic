@@ -6,6 +6,8 @@ import {
   Select,
   Text,
   VStack,
+  chakra,
+  Flex,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { GetServerSideProps } from "next";
@@ -37,15 +39,21 @@ export default function EpisodePage({ dataEpisode }: EpisodePageProps) {
     <Box maxW="1200px" m="0 auto">
       <Header />
       <VStack align="center">
-        <Text fontWeight="bold">Server</Text>
-        <Button colorScheme="red" size="sm">
-          Dreamsub
-        </Button>
         <Box>
-          <Text fontSize={15} fontWeight="bold">
-            You are watching <Code colorScheme="red">OnePice</Code>
-          </Text>
+          <Heading>
+            You are watching
+            <chakra.span color="red.200"> Onepiece</chakra.span>
+          </Heading>
         </Box>
+        <Text fontWeight="bold">Server</Text>
+        <Flex align="center" justify="center">
+          <Button colorScheme="red" size="sm">
+            Dreamsub
+          </Button>
+          <Button colorScheme="red" size="sm" ml={5}>
+            GogoAnime
+          </Button>
+        </Flex>
       </VStack>
       <Box mt={5} p={2}>
         <Video

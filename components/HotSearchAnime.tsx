@@ -16,7 +16,7 @@ export default function HotSearchAnime({ dataAnime }: HotSearchAnimeProps) {
   return (
     <>
       <Heading ml={5} mt={10} color="teal">
-        PHIM HOT TRONG TUẦN
+        ANIME HOT OF THE WEEK
       </Heading>
       <Box mt={5}>
         <Swiper spaceBetween={10} freeMode={true} slidesPerView={"auto"}>
@@ -34,7 +34,7 @@ export default function HotSearchAnime({ dataAnime }: HotSearchAnimeProps) {
           ))}
         </Swiper>
       </Box>
-      <Button
+      {/* <Button
         variant="link"
         colorScheme="red"
         rightIcon={<ArrowForwardIcon />}
@@ -43,7 +43,8 @@ export default function HotSearchAnime({ dataAnime }: HotSearchAnimeProps) {
         mr={2}
       >
         Xem Thêm
-      </Button>
+      </Button> */}
+      <Box mb={10}></Box>
     </>
   );
 }

@@ -9,6 +9,7 @@ import Head from "next/head";
 import { GetServerSideProps, GetStaticProps } from "next";
 import Pagination from "../../components/Pagination";
 import { useRouter } from "next/router";
+import FilterAnime from "../../components/FilterAnime";
 export interface AnimeProps {
   animeData: IAnimeResponseList;
 }
@@ -37,6 +38,7 @@ export default function Anime({ animeData }: AnimeProps) {
       </Head>
       <Header></Header>
       <Box maxW="1200px" m="0 auto">
+        {/* <FilterAnime /> */}
         <Box d="flex" flexWrap="wrap">
           {animeData.data.documents.map((data) => (
             <Box padding={2} w="16.6666666667%" height={300} key={data.id}>
@@ -61,7 +63,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
     response = await axios.get<IAnimeResponseList>(`${url}/anime`);
   } else {
     response = await axios.get<IAnimeResponseList>(
-      `${url}/anime?page=${query.page}&per_page=20`
+      `${url}/anime?page=${query.page}&per_page=30`
     );
   }
 

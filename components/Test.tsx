@@ -99,9 +99,10 @@ export default function Test(props: any) {
         </Select>
         <Select placeholder="Server" m={5}>
           <option value="option1">Dreamsub</option>
+          <option value="option1">Gogoanime</option>
         </Select>
       </Box>
-      <Box mt={5}>
+      <Box mt={5} mb={5}>
         {!dataAnimeClient && !dataEpisodeClient ? (
           <VStack align="center" mt={5}>
             <Spinner />

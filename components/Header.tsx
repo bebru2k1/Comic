@@ -29,7 +29,7 @@ export default function Header({ position }: HeaderProps) {
       <Flex align="center">
         {/* HeaderLeft-Left */}
         <Box>
-          <Link href="/abs" passHref>
+          <Link href="/" passHref>
             <ChakraLink>
               <Image
                 src="/imgs/logosaringan.png"
