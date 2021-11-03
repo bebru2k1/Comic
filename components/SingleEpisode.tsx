@@ -8,8 +8,8 @@ import { IEpisodeList } from "../IData/IEpisode";
 import { variantsAvatar } from "../animations/animations";
 import { IEpisode } from "../IData/IEpisode";
 export interface SingleEpisodeProps {
-  dataEpisode: IEpisode;
-  dataAnime: IAnime;
+  dataEpisode: IEpisode | null;
+  dataAnime: IAnime | null;
 }
 const MotionBox = motion(Box);
 const ImageNext = chakra(Image, {
@@ -22,7 +22,7 @@ export default function SingleEpisode({
   dataAnime,
 }: SingleEpisodeProps) {
   return (
-    <Link href={`/anime/${dataAnime.id}/${dataEpisode.number}`} passHref>
+    <Link href={`/anime/${dataAnime?.id}/${dataEpisode?.number}`} passHref>
       <ChakraLink>
         <MotionBox
           variants={variantsAvatar}
@@ -39,7 +39,8 @@ export default function SingleEpisode({
           flexShrink={0}
         >
           <ImageNext
-            src={dataAnime?.banner_image as string}
+            // src={(dataAnime?.banner_image as string) }
+            src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx114129-TI4mHjFNI0E0.png"
             alt=""
             layout="fill"
             borderRadius={5}
@@ -64,7 +65,7 @@ export default function SingleEpisode({
             textOverflow="ellipsis"
             width="100%"
           >
-            {`Ep ${dataEpisode.number} : ${dataEpisode.title}`}
+            {`Ep ${dataEpisode?.number} : ${dataEpisode?.title}`}
           </Box>
         </MotionBox>
       </ChakraLink>

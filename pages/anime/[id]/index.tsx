@@ -22,11 +22,12 @@ export interface DetailAnimeProps {
 }
 
 export default function DetailAnime({ dataAnime }: DetailAnimeProps) {
-  const route = useRouter();
+  const router = useRouter();
 
   const [dataEpisode, setDataEpisode] = useState<IEpisodeList | null>(null);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
   const fetchDataEpisode = async () => {
     const response = await axios.get<IEpisodeResponse>(
       `${url}/episode?anime_id=11&source=dreamsub&locale=it&page=2&per_page=20`
@@ -43,7 +44,7 @@ export default function DetailAnime({ dataAnime }: DetailAnimeProps) {
     setIsLoading(false);
   }, []);
 
-  if (route.isFallback) return <Spinner />;
+  if (router.isFallback) return <Spinner />;
 
   return (
     <>
@@ -53,7 +54,7 @@ export default function DetailAnime({ dataAnime }: DetailAnimeProps) {
       <Slide dataAnime={dataAnime}></Slide>
       <Episode
         dataAnime={dataAnime}
-        dataEpisode={dataEpisode!}
+        dataEpisode={dataEpisode}
         isLoading={isLoading}
       />
     </>

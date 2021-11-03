@@ -19,7 +19,7 @@ SwiperCore.use([FreeMode]);
 
 export interface EpisodeProps {
   dataAnime: IAnime;
-  dataEpisode: IEpisodeList;
+  dataEpisode: IEpisodeList | null;
   isLoading: boolean;
 }
 
@@ -28,6 +28,7 @@ export default function Episode({
   dataEpisode,
   isLoading,
 }: EpisodeProps) {
+  console.log("dataEpisode", dataEpisode?.documents);
   return (
     <Box mt={5} padding={5}>
       <Box>
@@ -51,7 +52,7 @@ export default function Episode({
             <Box>
               <Swiper freeMode={true} slidesPerView={"auto"}>
                 {dataEpisode?.documents
-                  .reverse()
+                  ?.reverse()
                   .slice(0, 10)
                   .map((data, index) => (
                     <SwiperSlide

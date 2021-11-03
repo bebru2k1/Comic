@@ -12,7 +12,7 @@ import axios from "axios";
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Header from "../../../../components/Header";
 import PlayerVideo from "../../../../components/PlayerVideo";
 import SingleEpisode from "../../../../components/SingleEpisode";
@@ -26,7 +26,11 @@ import {
   IAnimeResponseList,
   IAnimeResponseSingle,
 } from "../../../../IData/IAnime";
-
+import Plyr, { APITypes } from "plyr-react";
+import "plyr-react/dist/plyr.css";
+import Test from "../../../../components/Test";
+import { DefaultPlayer as Video } from "react-html5video";
+import "react-html5video/dist/styles.css";
 SwiperCore.use([FreeMode]);
 
 export interface EpisodePageProps {
@@ -34,46 +38,43 @@ export interface EpisodePageProps {
 }
 
 export default function EpisodePage({ dataEpisode }: EpisodePageProps) {
-  console.log(dataEpisode);
   const router = useRouter();
-  console.log(router);
-  const [pageEpisode, setPageEpisode] = useState(1);
-  const [dataEpisodeClient, setDataEpisodeClient] =
-    useState<IEpisodeList | null>(null);
-  const [perPage, setPerPage] = useState(50);
-  const [dataAnimeClient, setDataAnimeClient] = useState<IAnime | null>(null);
-  const fetchDataEpisode = async () => {
-    try {
-      const response = await axios.get<IEpisodeResponse>(
-        `${url}/episode?anime_id=${router.query.id}&source=dreamsub&locale=it&page=${pageEpisode}&per_page=${perPage}`
-      );
-      if (response.status === 200) {
-        setDataEpisodeClient(response.data.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
-  const fetchDataAnime = async () => {
-    try {
-      const response = await axios.get<IAnimeResponseSingle>(
-        `${url}/anime/${router.query.id}`
-      );
-      if (response.status === 200) {
-        setDataAnimeClient(response.data.data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const [pageEpisode, setPageEpisode] = useState(1);
+  // const [dataEpisodeClient, setDataEpisodeClient] =
+  //   useState<IEpisodeList | null>(null);
+  // const [perPage, setPerPage] = useState(50);
+  // const [dataAnimeClient, setDataAnimeClient] = useState<IAnime | null>(null);
+  // const fetchDataEpisode = async () => {
+  //   try {
+  //     const response = await axios.get<IEpisodeResponse>(
+  //       `${url}/episode?anime_id=11&source=dreamsub&locale=it&page=${pageEpisode}&per_page=${perPage}`
+  //     );
+  //     if (response.status === 200) {
+  //       setDataEpisodeClient(response.data.data);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  useEffect(() => {
-    fetchDataEpisode();
-    fetchDataAnime();
-  }, [pageEpisode]);
+  // const fetchDataAnime = async () => {
+  //   try {
+  //     const response = await axios.get<IAnimeResponseSingle>(
+  //       `${url}/anime/${router.query.id}`
+  //     );
+  //     if (response.status === 200) {
+  //       setDataAnimeClient(response.data.data);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  console.log(dataEpisode.documents);
+  // useEffect(() => {
+  //   fetchDataEpisode();
+  //   fetchDataAnime();
+  // }, [pageEpisode]);
 
   return (
     <Box maxW="1200px" m="0 auto">
@@ -90,7 +91,19 @@ export default function EpisodePage({ dataEpisode }: EpisodePageProps) {
         </Box>
       </VStack>
       <Box mt={5} p={2}>
-        <PlayerVideo
+        <Video
+          autoPlay
+          loop
+          muted
+          controls={["PlayPause", "Seek", "Time", "Volume", "Fullscreen"]}
+          poster="http://sourceposter.jpg"
+          onCanPlayThrough={() => {
+            // Do stuff
+          }}
+          src={dataEpisode.documents[0].video}
+        ></Video>
+        {/* <PlayerVideo
+          key={1}
           videoSrc={{
             type: "video",
             sources: [
@@ -99,12 +112,13 @@ export default function EpisodePage({ dataEpisode }: EpisodePageProps) {
               },
             ],
           }}
-        />
+        /> */}
         <Box mt={2}>
           <Heading>{`Episode ${dataEpisode.documents[0].number}: ${dataEpisode.documents[0].title}`}</Heading>
         </Box>
       </Box>
-      <Box>
+      <Test />
+      {/* <Box>
         {!dataAnimeClient && !dataEpisodeClient ? (
           <VStack align="center" mt={5}>
             <Spinner />
@@ -112,7 +126,7 @@ export default function EpisodePage({ dataEpisode }: EpisodePageProps) {
         ) : (
           <Box mt={5}>
             <Swiper freeMode={true} slidesPerView={"auto"}>
-              {dataEpisodeClient?.documents.reverse().map((data, index) => (
+              {dataEpisodeClient?.documents?.reverse().map((data, index) => (
                 <SwiperSlide
                   key={index}
                   style={{
@@ -130,14 +144,14 @@ export default function EpisodePage({ dataEpisode }: EpisodePageProps) {
             </Swiper>
           </Box>
         )}
-      </Box>
+      </Box> */}
     </Box>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const response = await axios.get<IEpisodeResponse>(
-    `${url}/episode?anime_id=${params!.id}&number=${
+    `${url}/episode?anime_id=11&number=${
       params!.episode
     }&source=dreamsub&locale=it`
   );
