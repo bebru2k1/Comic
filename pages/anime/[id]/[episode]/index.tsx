@@ -1,4 +1,12 @@
-import { Box, Button, Code, Heading, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Code,
+  Heading,
+  Select,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
@@ -53,9 +61,12 @@ export default function EpisodePage({ dataEpisode }: EpisodePageProps) {
         ></Video>
 
         <Box mt={2}>
-          <Heading>{`Episode ${dataEpisode.documents[0].number}: ${dataEpisode.documents[0].title}`}</Heading>
+          <Heading
+            fontSize={30}
+          >{`Episode ${dataEpisode.documents[0].number}: ${dataEpisode.documents[0].title}`}</Heading>
         </Box>
       </Box>
+
       <Test />
     </Box>
   );

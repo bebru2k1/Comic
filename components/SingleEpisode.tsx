@@ -1,5 +1,10 @@
 import * as React from "react";
-import { Box, chakra, Link as ChakraLink } from "@chakra-ui/react";
+import {
+  Box,
+  chakra,
+  Link as ChakraLink,
+  Image as ImageChakra,
+} from "@chakra-ui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { IAnime } from "../IData/IAnime";
@@ -38,15 +43,24 @@ export default function SingleEpisode({
           }}
           flexShrink={0}
         >
-          <ImageNext
+          {/* <ImageNext
             // src={(dataAnime?.banner_image as string) }
-            src="https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx114129-TI4mHjFNI0E0.png"
+            src={dataAnime?.cover_image as string}
             alt=""
             layout="fill"
             borderRadius={5}
             boxShadow="rgba(99, 99, 99, 0.4) 0px 4px 10px 0px"
             objectFit="cover"
-          />
+          /> */}
+          <ImageChakra
+            src={dataAnime?.banner_image as string}
+            boxShadow="rgba(99, 99, 99, 0.4) 0px 4px 10px 0px"
+            objectFit="cover"
+            alt=""
+            borderRadius={5}
+            w="100%"
+            height="100%"
+          ></ImageChakra>
 
           <Box
             position="absolute"

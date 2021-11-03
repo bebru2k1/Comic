@@ -7,6 +7,7 @@ import {
   Text,
   Code,
   Heading,
+  Select,
 } from "@chakra-ui/react";
 import axios from "axios";
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
@@ -37,6 +38,7 @@ export default function Test(props: any) {
     useState<IEpisodeList | null>(null);
   const [perPage, setPerPage] = useState(50);
   const [dataAnimeClient, setDataAnimeClient] = useState<IAnime | null>(null);
+  const [limitEpisode, setLimitEpisode] = useState(50);
   const fetchDataEpisode = async () => {
     try {
       const response = await axios.get<IEpisodeResponse>(
@@ -70,7 +72,36 @@ export default function Test(props: any) {
 
   return (
     <Box>
-      <Box>
+      <Box d="flex">
+        <Select
+          placeholder="List Episode"
+          m={5}
+          onChange={(e) => {
+            setPageEpisode(parseInt(e.target.value));
+          }}
+        >
+          {dataEpisodeClient &&
+            [
+              ...Array(
+                Math.ceil((dataEpisodeClient?.count as number) / limitEpisode)
+              ),
+            ]
+              .map((item, index) => index)
+              .map((page) => {
+                const start = page * limitEpisode;
+                const end = (page + 1) * limitEpisode;
+                return (
+                  <option key={page} value={page + 1}>
+                    {`Ep ${start} - Ep ${end}`}
+                  </option>
+                );
+              })}
+        </Select>
+        <Select placeholder="Server" m={5}>
+          <option value="option1">Dreamsub</option>
+        </Select>
+      </Box>
+      <Box mt={5}>
         {!dataAnimeClient && !dataEpisodeClient ? (
           <VStack align="center" mt={5}>
             <Spinner />
@@ -78,7 +109,7 @@ export default function Test(props: any) {
         ) : (
           <Box mt={5}>
             <Swiper freeMode={true} slidesPerView={"auto"}>
-              {dataEpisodeClient?.documents?.reverse().map((data, index) => (
+              {dataEpisodeClient?.documents?.map((data, index) => (
                 <SwiperSlide
                   key={index}
                   style={{
