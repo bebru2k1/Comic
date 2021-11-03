@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Image } from "@chakra-ui/image";
-import { Box, Code, Flex, Heading } from "@chakra-ui/layout";
+
+import { Link as ChakraLink, Box, Code, Flex, Heading } from "@chakra-ui/react";
+import Link from "next/link";
 import { Text } from "@chakra-ui/layout";
 import Header from "./Header";
 // import Image from "next/image";
@@ -16,6 +18,7 @@ import { Button, useDisclosure } from "@chakra-ui/react";
 import SlideButton from "./SlideButton";
 import { IAnime } from "../IData/IAnime";
 import PlayerVideo from "./PlayerVideo";
+import { useRouter } from "next/router";
 
 const MotionBox = motion(Box);
 const MotionImage = motion(Image);
@@ -26,6 +29,8 @@ export interface SlideProps {
 
 export default function Slide({ dataAnime }: SlideProps) {
   console.log(dataAnime);
+  const router = useRouter();
+  console.log(router);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box position="relative" height={700}>
@@ -75,9 +80,11 @@ export default function Slide({ dataAnime }: SlideProps) {
               boxShadow="rgba(99, 99, 99, 0.4) 0px 4px 10px 0px"
             ></Image>
             <Box mt={5}>
-              <Button size="sm" colorScheme="red">
-                Watch
-              </Button>
+              <Link href={`${router.asPath}/1`} passHref>
+                <Button size="sm" colorScheme="red">
+                  Watch
+                </Button>
+              </Link>
               <Button ml={2} size="sm" colorScheme="yellow" onClick={onOpen}>
                 View Trailer
                 <Modal

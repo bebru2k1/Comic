@@ -97,7 +97,7 @@ export default function Episode({
           )}
         </Box>
       </Box>
-      <Box w="400px">
+      <Box>
         <Text fontSize={20} fontWeight="bold" colorScheme="red" mb={5}>
           Infomation
         </Text>
